@@ -85,3 +85,4 @@ class Tomaco{
 		self.error("Ya hay algo plantado aca")
 	}
 }
+/*el metodo puedePlantar(), le pregunta a una clase, no a una instancia, por eso falla*/
