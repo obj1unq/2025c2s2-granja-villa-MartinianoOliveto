@@ -2,87 +2,77 @@ import wollok.game.*
 import personaje.*
 // se dice que se conocen los cultivos sembrados, pense guardar cad tipo en un array y se puede preguntar (si se quiere); si hay algun tipo de cultivo en la granja 
 class Maiz {
-	const maizPlantado = []
+	//const maizPlantado = []
+	var property position = game.origin()
+	//var property estado = la primera fase del cultivo
+	//podria hacer un array con los estados, y de ahi ir cambiandolos?
 
-	method position() {
-		return personaje.position()
-	}
 	method image() {
-		return "corn_baby.png"
+		return "corn_baby.png" // la imagen va a depender del estado 
 	}
 	method plantar(){
-		if(self.puedePlantar()){
-			const maiz = new Maiz() 
-			game.addVisual(maiz)
-			maizPlantado.add(maiz)
-		}else{
-			self.noPuedePlantar()
-		}
-	}
-	method hayMaiz(){
-		return maizPlantado.any({maiz => maiz.position() == personaje.position()})
-	}
-	method puedePlantar(){
-		return not Trigo.hayTrigo() && not Maiz.hayMaiz() && not Tomaco.hayTomaco()
+		const maiz = new Maiz(position = personaje.position()) 
+		game.addVisual(maiz)
 	}
 	method noPuedePlantar(){
-		self.error("Ya hay algo plantado aca")
+		self.error("Ya hay algo plantado aca") 
 	}
+	//REGAR 
 }
 class Trigo{
-	const trigoPlantado = []
+	//const trigoPlantado = []
+	var property position = game.origin() 
 
-	method position(){
-		return personaje.position()
-	}
 	method image(){
 		return "wheat_0.png"
 	}
 	method plantar(){
-		if(self.puedePlantar()){
-			const trigo = new Trigo()
-			game.addVisual(trigo)
-			trigoPlantado.add(trigo)
-		}else{
-			self.noPuedePlantar()
-		}
+		const trigo = new Trigo(position = personaje.position())
+		game.addVisual(trigo)
 	}
-	method hayTrigo(){
-		return trigoPlantado.any({trigo => trigo.position() == personaje.position()})
-	}
-	method puedePlantar(){
-		return not Trigo.hayTrigo() && not Maiz.hayMaiz() && not Tomaco.hayTomaco()
-	}
+
 	method noPuedePlantar(){
 		self.error("Ya hay algo plantado aca")
 	}
 }
 class Tomaco{
-	const tomacoPlantado = []
+	//const tomacoPlantado = []
+	var property position = game.origin()
 
-	method position(){
-		return personaje.position()
-	}
 	method image(){
 		return "tomaco.png"
 	}
 	method plantar(){
-		if(self.puedePlantar()){
-			const tomaco = new Tomaco()
-			game.addVisual(tomaco)
-			tomacoPlantado.add(tomaco)
-		}else{
-			self.noPuedePlantar()
-		}
-	}
-	method hayTomaco(){
-		return tomacoPlantado.any({tomaco => tomaco.position() == personaje.position()})
-	}
-	method puedePlantar(){
-		return not Trigo.hayTrigo() && not Maiz.hayMaiz() && not Tomaco.hayTomaco()
+		const tomaco = new Tomaco(position = personaje.position())
+		game.addVisual(tomaco)
 	}
 	method noPuedePlantar(){
 		self.error("Ya hay algo plantado aca")
 	}
 }
 /*el metodo puedePlantar(), le pregunta a una clase, no a una instancia, por eso falla*/
+
+object trigo0{
+	var property image = "wheat_0.png"
+}
+object trigo1{
+	var property image = "wheat_1.png" 
+}
+object trigo2{
+	var property image = "wheat_2.png" 
+}
+object trigo3{
+	var property image = "wheat_3.png"
+}
+object tomacoBaby{
+	var property image = "tomaco_baby.png" 
+}
+object tomaco{
+	var property image = "tomaco.png"
+}
+object cornBaby{
+	var property image = "corn_baby.png"
+}
+object cornAdult{
+	var property image = "corn_adult.png"
+}
