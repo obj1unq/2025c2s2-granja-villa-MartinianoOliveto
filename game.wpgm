@@ -11,8 +11,14 @@ program farmville {
 
 	//  VISUALES
  	game.addVisualCharacter(personaje)
- 	game.addVisual(new Maiz()) // Se agrega a modo de prueba
+	//game.addVisual(Trigo)
+	//game.addVisual(Tomaco)
+	//game.addVisual(Maiz)
  	
+	//EVENTOS
+	keyboard.m().onPressDo({new Maiz().plantar()})
+	keyboard.t().onPressDo({new Trigo().plantar()})
+	keyboard.o().onPressDo({new Tomaco().plantar()})
  	//  COMIENZA
 	game.start()
 }
