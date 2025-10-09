@@ -7,19 +7,34 @@ object personaje {
 	const cultivosPlantados = []
 
 	method plantarMaiz(){
+		if(! self.hayCultivoEn(position)){
 		const maiz = new Maiz(position = self.position()) 
 		cultivosPlantados.add(maiz)
 		game.addVisual(maiz)
+		}else{
+			self.noPuedePlantar()
+		}
+
 	}
 	method plantarTrigo(){
+		if(! self.hayCultivoEn(position)){
 		const trigo = new Trigo(position = self.position())
 		cultivosPlantados.add(trigo)
 		game.addVisual(trigo)
+		}else{
+			self.noPuedePlantar()
+		}
+
 	}
 	method plantarTomaco(){
+		if(! self.hayCultivoEn(position)){
 		const tomaco = new Tomaco(position = self.position())
 		cultivosPlantados.add(tomaco)
 		game.addVisual(tomaco)
+		}else{
+			self.noPuedePlantar()
+		}
+
 	}
 
 
