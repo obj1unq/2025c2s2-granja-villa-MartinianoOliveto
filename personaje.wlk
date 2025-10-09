@@ -5,6 +5,7 @@ object personaje {
 	var property position = game.center()
 	const property image = "fplayer.png"
 	const cultivosPlantados = []
+	const cultivosCosechados = []
 
 	method plantarMaiz(){
 		if(! self.hayCultivoEn(position)){
@@ -33,24 +34,42 @@ object personaje {
 			self.noPuedePlantar()
 		}
 	}
-
 	method regar(){
 		if(self.hayCultivoEn(position)){
 			const cultivo = cultivosPlantados.find({cultivo => cultivo.position() == position})
 			cultivo.crecer()
 		}else{
-			self.noHayCultivo()
+			self.noHayCultivoParaRegar()
+		}
+	}
+	method cosechar(){
+		if(self.hayCultivoEn(position)){
+			const cultivo = cultivosPlantados.find({cultivo => cultivo.position() == position})
+			//cultivo.cosechar()	
+			self.verificarSiSePuedeCosechar(cultivo)
+		}else{
+			self.noHayCultivoParaCosechar()
+		}
+	}
+	method verificarSiSePuedeCosechar(cultivo){
+		if(cultivo.esAptoCosecha()){
+			cultivosCosechados.add(cultivo)
+			cultivosPlantados.remove(cultivo)
+			game.removeVisual(cultivo)
 		}
 	}
 
 	method hayCultivoEn(coordenada){
 		return cultivosPlantados.any({cultivo => cultivo.position() == coordenada})
 	}
-	method noHayCultivo(){
-		self.error("No hay ningun cultivo para regar")
+	method noHayCultivoParaRegar(){
+		self.error("No hay cultivo para regar aca")
 	}
 	method noPuedePlantar(){
 		self.error("Ya hay algo plantado aca") 
+	}
+	method noHayCultivoParaCosechar(){
+		self.error("No hay cultivo para cosechar aca")
 	}
 
 }

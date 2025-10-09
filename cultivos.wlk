@@ -2,7 +2,6 @@ import wollok.game.*
 import personaje.*
 // se dice que se conocen los cultivos sembrados, pense guardar cad tipo en un array y se puede preguntar (si se quiere); si hay algun tipo de cultivo en la granja 
 class Maiz {
-	//const maizPlantado = []
 	var property position = game.origin()
 	var property estado = cornBaby
 	
@@ -12,9 +11,13 @@ class Maiz {
 	method crecer(){
 		estado = estado.siguiente()
 	}
+	method esAptoCosecha(){
+		return estado == cornAdult // resolverlo de otra forma 
+	}
+
+	
 }
 class Trigo{
-	//const trigoPlantado = []
 	var property position = game.origin() 
 	var property estado = trigo0 
 
@@ -23,6 +26,12 @@ class Trigo{
 	}
 	method crecer(){
 		estado = estado.siguiente()
+	}
+	method esAptoCosecha(){
+		return self.estaEnEstado(trigo2) || self.estaEnEstado(trigo3)
+	}
+	method estaEnEstado(_estado){
+		return estado == _estado 
 	}
 }
 class Tomaco{
@@ -47,7 +56,16 @@ class Tomaco{
 			//game.addVisual(self)
 		}
 	}
+	method esAptoCosecha(){
+		return true 
+	}
 }
+
+
+
+
+
+
 
 
 object trigo0{
