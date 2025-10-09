@@ -16,9 +16,10 @@ program farmville {
 	//game.addVisual(Maiz)
  	
 	//EVENTOS
-	keyboard.m().onPressDo({new Maiz().plantar()})
-	keyboard.t().onPressDo({new Trigo().plantar()})
-	keyboard.o().onPressDo({new Tomaco().plantar()})
+	keyboard.m().onPressDo({personaje.plantarMaiz()})
+	keyboard.t().onPressDo({personaje.plantarTrigo()})
+	keyboard.o().onPressDo({personaje.plantarTomaco()})
+	keyboard.r().onPressDo({personaje.regar()})
  	//  COMIENZA
 	game.start()
 }
