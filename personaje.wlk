@@ -14,7 +14,6 @@ object personaje {
 		}else{
 			self.noPuedePlantar()
 		}
-
 	}
 	method plantarTrigo(){
 		if(! self.hayCultivoEn(position)){
@@ -24,7 +23,6 @@ object personaje {
 		}else{
 			self.noPuedePlantar()
 		}
-
 	}
 	method plantarTomaco(){
 		if(! self.hayCultivoEn(position)){
@@ -34,15 +32,11 @@ object personaje {
 		}else{
 			self.noPuedePlantar()
 		}
-
 	}
-
-
-
 
 	method regar(){
 		if(self.hayCultivoEn(position)){
-			const cultivo =cultivosPlantados.find({cultivo => cultivo.position() == position})
+			const cultivo = cultivosPlantados.find({cultivo => cultivo.position() == position})
 			cultivo.crecer()
 		}else{
 			self.noHayCultivo()

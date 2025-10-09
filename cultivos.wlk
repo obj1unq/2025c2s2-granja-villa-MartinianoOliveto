@@ -19,21 +19,33 @@ class Trigo{
 	var property estado = trigo0 
 
 	method image(){
-		return "wheat_0.png"
+		return estado.image()
 	}
 	method crecer(){
 		estado = estado.siguiente()
 	}
 }
 class Tomaco{
-	//const tomacoPlantado = []
+	
 	var property position = game.origin()
+	var property estado = tomacoBaby
 
 	method image(){
-		return "tomaco.png"
+		return estado.image()
 	}
 	method crecer(){
-
+		estado = estado.siguiente()
+		self.moverseArriba()
+	}
+	
+	method moverseArriba(){
+		if(position.y() != game.height()){
+			self.position(self.position().up(1))
+		}
+		else{
+			self.position(self.position().down(9))// al llegar al borde desaparece 
+			//game.addVisual(self)
+		}
 	}
 }
 
@@ -68,9 +80,17 @@ object trigo3{
 }
 object tomacoBaby{
 	var property image = "tomaco_baby.png" 
+
+	method siguiente(){
+		return tomaco 
+	}
 }
 object tomaco{
 	var property image = "tomaco.png"
+
+	method siguiente(){
+		return self 
+	}
 }
 object cornBaby{
 	var property image = "corn_baby.png"
