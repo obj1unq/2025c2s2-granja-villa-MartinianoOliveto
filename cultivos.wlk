@@ -14,7 +14,9 @@ class Maiz {
 	method esAptoCosecha(){
 		return estado == cornAdult // resolverlo de otra forma 
 	}
-
+	method valor(){
+		return 150 
+	}
 	
 }
 class Trigo{
@@ -32,6 +34,13 @@ class Trigo{
 	}
 	method estaEnEstado(_estado){
 		return estado == _estado 
+	}
+	method valor(){
+		if(self.estaEnEstado(trigo2)){
+			return 200
+		}else{
+			return 300 
+		}
 	}
 }
 class Tomaco{
@@ -58,6 +67,9 @@ class Tomaco{
 	}
 	method esAptoCosecha(){
 		return true 
+	}
+	method valor(){
+		return 80 
 	}
 }
 

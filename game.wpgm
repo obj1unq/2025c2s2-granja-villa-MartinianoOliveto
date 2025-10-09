@@ -21,6 +21,10 @@ program farmville {
 	keyboard.o().onPressDo({personaje.plantarTomaco()})
 	keyboard.r().onPressDo({personaje.regar()})
 	keyboard.c().onPressDo({personaje.cosechar()})
+	keyboard.v().onPressDo({personaje.vender()})
+	keyboard.space().onPressDo({game.say(personaje, " Tengo " + 
+	personaje.oroAcumulado() +" oro acumulado " + " y " + personaje.cantCultivos() + 
+	" cultivos para vender ")})
  	//  COMIENZA
 	game.start()
 }

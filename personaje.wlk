@@ -6,6 +6,7 @@ object personaje {
 	const property image = "fplayer.png"
 	const cultivosPlantados = []
 	const cultivosCosechados = []
+	var property oroAcumulado = 0 
 
 	method plantarMaiz(){
 		if(! self.hayCultivoEn(position)){
@@ -58,10 +59,19 @@ object personaje {
 			game.removeVisual(cultivo)
 		}
 	}
+	method vender(){
+		cultivosCosechados.forEach({cultivo => oroAcumulado = oroAcumulado + cultivo.valor()})
+		cultivosCosechados.clear()
+	}
 
 	method hayCultivoEn(coordenada){
 		return cultivosPlantados.any({cultivo => cultivo.position() == coordenada})
 	}
+	method cantCultivos(){
+		return cultivosCosechados.size()
+	}
+
+	//ERRORES 
 	method noHayCultivoParaRegar(){
 		self.error("No hay cultivo para regar aca")
 	}
