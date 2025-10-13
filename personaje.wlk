@@ -1,11 +1,14 @@
 import wollok.game.*
 import cultivos.*
+import aspersor.*
+
 
 object personaje {
 	var property position = game.center()
 	const property image = "fplayer.png"
 	const cultivosPlantados = []
 	const cultivosCosechados = []
+	const aspersores = []
 	var property oroAcumulado = 0 
 
 	method plantarMaiz(){
@@ -64,12 +67,27 @@ object personaje {
 		cultivosCosechados.clear()
 	}
 
+	method ponerAspersor(){
+		if(!self.hayCultivoEn(self.position()) && !self.hayAspersorEn(self.position())){
+			const aspersor = new Aspersor(position = self.position())
+			aspersores.add(aspersor)
+			game.addVisual(aspersor)
+		}else{
+			self.noPuedeColocarAspersor()
+		}
+		
+	}
+
 	method hayCultivoEn(coordenada){
 		return cultivosPlantados.any({cultivo => cultivo.position() == coordenada})
 	}
 	method cantCultivos(){
 		return cultivosCosechados.size()
 	}
+	method hayAspersorEn(coordenada){
+		return aspersores.any({aspersor => aspersor.position() == coordenada})
+	}
+
 
 	//ERRORES 
 	method noHayCultivoParaRegar(){
@@ -80,6 +98,9 @@ object personaje {
 	}
 	method noHayCultivoParaCosechar(){
 		self.error("No hay cultivo para cosechar aca")
+	}
+	method noPuedeColocarAspersor(){
+		self.error("No puedo poner un aspersor aca")
 	}
 
 }

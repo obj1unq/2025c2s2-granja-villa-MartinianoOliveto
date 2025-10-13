@@ -1,6 +1,7 @@
 import wollok.game.*
 import personaje.*
 import cultivos.*
+import aspersor.*
 
 program farmville {
 	//  CONFIG	
@@ -25,6 +26,10 @@ program farmville {
 	keyboard.space().onPressDo({game.say(personaje, " Tengo " + 
 	personaje.oroAcumulado() +" oro acumulado " + " y " + personaje.cantCultivos() + 
 	" cultivos para vender ")})
+	keyboard.a().onPressDo({personaje.ponerAspersor()})
+
+	//TICKS
+	//game.onTick(1000, "aspersor riega", {personaje.aspersores.forEach({aspersor => aspersor.regar()})})
  	//  COMIENZA
 	game.start()
 }

@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.*
+import aspersor.*
 // se dice que se conocen los cultivos sembrados, pense guardar cad tipo en un array y se puede preguntar (si se quiere); si hay algun tipo de cultivo en la granja 
 class Maiz {
 	var property position = game.origin()
