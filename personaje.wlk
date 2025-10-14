@@ -1,7 +1,7 @@
 import wollok.game.*
 import cultivos.*
 import aspersor.*
-
+import mercado.*
 
 object personaje {
 	var property position = game.center()
@@ -75,8 +75,26 @@ object personaje {
 		}else{
 			self.noPuedeColocarAspersor()
 		}
-		
 	}
+
+	method venderEnMercado(mercado){
+		if(mercado.puedePagar(self)){
+			cultivosCosechados.forEach({cultivo => mercado.mercaderia().add(cultivo)})
+			self.vender()
+			mercado.pagarA(self)
+
+		}else{
+			self.noPuedeVenderAlMercado()
+		}
+	}
+
+	method valorDeCosecha(){
+        return self.preciosDeCultivos().sum()
+    }
+    method preciosDeCultivos(){
+        return cultivosCosechados.map({cultivo => cultivo.valor()})
+    }
+
 
 	method hayCultivoEn(coordenada){
 		return cultivosPlantados.any({cultivo => cultivo.position() == coordenada})
@@ -101,6 +119,9 @@ object personaje {
 	}
 	method noPuedeColocarAspersor(){
 		self.error("No puedo poner un aspersor aca")
+	}
+	method noPuedeVenderAlMercado(){
+		self.error("El mercado no tiene dinero suficiente")
 	}
 
 }
