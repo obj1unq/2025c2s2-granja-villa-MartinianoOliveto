@@ -72,6 +72,7 @@ object personaje {
 			const aspersor = new Aspersor(position = self.position())
 			aspersores.add(aspersor)
 			game.addVisual(aspersor)
+			game.onTick(1000, "regar", {aspersor.regarEnTodasLasDirecciones()})
 		}else{
 			self.noPuedeColocarAspersor()
 		}

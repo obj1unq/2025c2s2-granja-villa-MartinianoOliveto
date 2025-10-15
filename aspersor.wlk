@@ -7,19 +7,19 @@ class Aspersor{
     var property image = "aspersor.png"
 
     method regarEnTodasLasDirecciones(){
-        self.regarHaciaSiPuede(self.position().x() + 1) //derecha 
-        self.regarHaciaSiPuede(self.position().x() - 1) //izquierda
-        self.regarHaciaSiPuede(self.position().y() + 1) //arriba
-        self.regarHaciaSiPuede(self.position().y() - 1) //abajo
-        self.regarHaciaSiPuede(self.position().x() + 1 && self.position().y() + 1)//diagonal derecha 
-        self.regarHaciaSiPuede(self.position().x() - 1 && self.position().y() + 1)//diagonal izquierda 
-        self.regarHaciaSiPuede(self.position().x() + 1 && self.position().y() - 1)//diagonal derecha abajo  
-        self.regarHaciaSiPuede(self.position().x() - 1 && self.position().y() - 1)//diagonal izquierda abajo 
+        self.regarHacia(game.at(self.position().x() + 1, self.position().y())) //derecha 
+        self.regarHacia(game.at(self.position().x() - 1, self.position().y())) //izquierda
+        self.regarHacia(game.at(self.position().x(), self.position().y() + 1)) //arriba
+        self.regarHacia((game.at(self.position().x() + 1, self.position().y() - 1))) //abajo
+        self.regarHacia(game.at(self.position().x() + 1, self.position().y() + 1))//diagonal derecha 
+        self.regarHacia(game.at(self.position().x() - 1, self.position().y() + 1))//diagonal izquierda 
+        self.regarHacia(game.at(self.position().x() + 1, self.position().y() - 1))//diagonal derecha abajo  
+        self.regarHacia(self.position().x() - 1 && self.position().y() - 1)//diagonal izquierda abajo 
     }
-    method regarHaciaSiPuede(coordenada){
+    method regarHacia(coordenada){
         if(personaje.hayCultivoEn(coordenada)){
-            const cultivo = personaje.cultivosPlantados.find({cultivo => cultivo.position() == coordenada})
-            cultivo.crecer()
+        const cultivo = personaje.cultivosPlantados.find({cultivo => cultivo.position() == coordenada})
+        cultivo.crecer()
         }
     }
 }
